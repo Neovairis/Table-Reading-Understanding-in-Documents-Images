@@ -7,7 +7,7 @@ Created on Thu Nov 22 21:54:10 2018
 import DOC_2_PDF
 from DOC_2_PDF import total_word_file
 import shutil
-import os,  os.path
+import os, os.path
 import glob
 from pdf2image import convert_from_path
 import cv2
@@ -132,7 +132,7 @@ for i in range(0, len(jpegs)):
     name_list = os.path.splitext(name)[0]
     file_name.append(name_list)
 
-    
+
 tiffs = [cv2.imread(file) for file in glob.glob(r"C:\Axis AI Challenge @ Akash_Abhishek\INPUT FILES\*.tiff") ]        
 total_no_tiffs = len(tiffs)        
 
@@ -156,7 +156,7 @@ for i in range(0, len(tifs)):
     file_name.append(name_list)
     #tiff_page.save("C:\Axis AI Challenge @ Akash_Abhishek\PROCESSED FILES 1\{}\tiff_{}.jpg" .format(i+1+total_no_pdf+total_no_jpgs, i+1))
 
-    
+
 
 
 
