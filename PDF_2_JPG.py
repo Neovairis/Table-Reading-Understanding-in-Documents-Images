@@ -15,12 +15,12 @@ import numpy as np
 
 input_direc = r"C:\Axis AI Challenge @ Akash_Abhishek\INPUT FILES"
 total_input_files = len(os.listdir(input_direc))
-total_effective_files=total_input_files - total_word_file
+total_effective_files = total_input_files - total_word_file
 total_input_files = len(os.listdir(input_direc)) #除了word文档之外的文档数量
 
 #name_lists_new = set(name_lists)    
 
-direc_1= r"C:\Axis AI Challenge @ Akash_Abhishek\PROCESSED FILES 1"
+direc_1 = r"C:\Axis AI Challenge @ Akash_Abhishek\PROCESSED FILES 1"
 if os.path.exists(direc_1):
     shutil.rmtree(direc_1)
 
@@ -39,10 +39,10 @@ os.makedirs(direc_2)
 for i in range(0, total_effective_files):
    pocessing_files_2_direc = r"C:\Axis AI Challenge @ Akash_Abhishek\PROCESSED FILES 2\{}".format(i+1)        
    os.makedirs(pocessing_files_2_direc) 
-   direc_3= r"C:\Axis AI Challenge @ Akash_Abhishek\PROCESSED FILES 2\{}\Detected Tables".format(i+1)
+   direc_3 = r"C:\Axis AI Challenge @ Akash_Abhishek\PROCESSED FILES 2\{}\Detected Tables".format(i+1)
    os.makedirs(direc_3)
 
-direc_3= r"C:\Axis AI Challenge @ Akash_Abhishek\OUTPUT FILES"
+direc_3 = r"C:\Axis AI Challenge @ Akash_Abhishek\OUTPUT FILES"
 if os.path.exists(direc_3):
     shutil.rmtree(direc_3) 
 
@@ -89,7 +89,7 @@ jpgs = [cv2.imread(file) for file in glob.glob(r"C:\Axis AI Challenge @ Akash_Ab
 total_no_jpgs = len(jpgs)        
 
 for i in range(0, len(jpgs)):
-    jpg_page=jpgs[i] 
+    jpg_page = jpgs[i]
     cv2.imwrite(r"C:\Axis AI Challenge @ Akash_Abhishek\PROCESSED FILES 1\{}\jpg_{}.jpg".format(i+1+total_no_pdf,i+1), jpg_page)
     name = results_jpg[i]
     name_list = os.path.splitext(name)[0]
@@ -99,7 +99,7 @@ pngs = [cv2.imread(file) for file in glob.glob(r"C:\Axis AI Challenge @ Akash_Ab
 total_no_pngs = len(pngs)        
 
 for i in range(0, len(pngs)):
-    png_page=pngs[i] 
+    png_page = pngs[i]
     cv2.imwrite(r"C:\Axis AI Challenge @ Akash_Abhishek\PROCESSED FILES 1\{}\png_{}.jpg" .format(i+1+total_no_pdf+total_no_jpgs,i+1), png_page)
     name = results_png[i]
     name_list = os.path.splitext(name)[0]
@@ -109,7 +109,7 @@ jpegs = [cv2.imread(file) for file in glob.glob(r"C:\Axis AI Challenge @ Akash_A
 total_no_jpegs = len(jpegs)        
 
 for i in range(0, len(jpegs)):
-    jpeg_page=jpegs[i] 
+    jpeg_page = jpegs[i]
     cv2.imwrite(r"C:\Axis AI Challenge @ Akash_Abhishek\PROCESSED FILES 1\{}\jpeg_{}.jpg" .format(i+1+total_no_pdf+total_no_jpgs+total_no_pngs, i+1))
     name = results_jpeg[i]
     name_list = os.path.splitext(name)[0]
@@ -120,7 +120,7 @@ tiffs = [cv2.imread(file) for file in glob.glob(r"C:\Axis AI Challenge @ Akash_A
 total_no_tiffs = len(tiffs)        
 
 for i in range(0, len(tiffs)):
-    tiff_page=tiffs[i]
+    tiff_page = tiffs[i]
     cv2.imwrite(r"C:\Axis AI Challenge @ Akash_Abhishek\PROCESSED FILES 1\{}\tiff_{}.jpg" .format(i+1+total_no_pdf+total_no_jpgs+total_no_pngs+total_no_jpegs, i+1), tiff_page)    
     name = results_tiff[i]
     name_list = os.path.splitext(name)[0]
@@ -132,7 +132,7 @@ tifs = [cv2.imread(file) for file in glob.glob(r"C:\Axis AI Challenge @ Akash_Ab
 total_no_tiffs = len(tifs)        
 
 for i in range(0, len(tifs)):
-    tif_page=tifs[i]
+    tif_page = tifs[i]
     cv2.imwrite(r"C:\Axis AI Challenge @ Akash_Abhishek\PROCESSED FILES 1\{}\tiff_{}.jpg" .format(i+1+total_no_pdf+total_no_jpgs+total_no_pngs+total_no_jpegs+total_no_tiffs, i+1), tif_page)    
     name = results_tif[i]
     name_list = os.path.splitext(name)[0]
