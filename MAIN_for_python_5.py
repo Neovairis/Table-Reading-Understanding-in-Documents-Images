@@ -25,8 +25,8 @@ def find_score(arr, angle):
     return hist, score
 
 def skew_correction(img_orig):
-    img = im.fromarray(img_orig)
-    a, b = img.size
+    img = im.fromarray(img_orig) #将二维数组转换为图像
+    a, b = img.size #(width, height)
 
     if b >= a:
         size = 720, int((b/a)*720)
