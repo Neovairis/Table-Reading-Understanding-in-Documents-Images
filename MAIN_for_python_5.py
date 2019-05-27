@@ -341,7 +341,7 @@ def table_seperator(vertical, horizontal, img_line_removed, img_line_only, img_s
     return 0
 
 
-processed_2_direc = "C:\Axis AI Challenge @ Akash_Abhishek\PROCESSED FILES 2"
+processed_2_direc = "C:\Axis AI Challenge @ Akash_Abhishek\PROCESSED FILES 2"  #除了word之外的文档
 total_input_files = len(os.listdir(processed_2_direc))
 
 for j in range(0, total_input_files):

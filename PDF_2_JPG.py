@@ -15,8 +15,7 @@ import numpy as np
 
 input_direc = r"C:\Axis AI Challenge @ Akash_Abhishek\INPUT FILES"
 total_input_files = len(os.listdir(input_direc))
-total_effective_files = total_input_files - total_word_file
-total_input_files = len(os.listdir(input_direc)) #除了word文档之外的文档数量
+total_effective_files = total_input_files - total_word_file#除了word文档之外的文档数量
 
 #name_lists_new = set(name_lists)    
 
@@ -90,7 +89,7 @@ total_no_jpgs = len(jpgs)
 
 for i in range(0, len(jpgs)):
     jpg_page = jpgs[i]
-    cv2.imwrite(r"C:\Axis AI Challenge @ Akash_Abhishek\PROCESSED FILES 1\{}\jpg_{}.jpg".format(i+1+total_no_pdf,i+1), jpg_page)
+    cv2.imwrite(r"C:\Axis AI Challenge @ Akash_Abhishek\PROCESSED FILES 1\{}\jpg_{}.jpg".format(i+1+total_no_pdf, i+1), jpg_page)
     name = results_jpg[i]
     name_list = os.path.splitext(name)[0]
     file_name.append(name_list)
