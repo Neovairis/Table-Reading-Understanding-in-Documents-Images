@@ -6,39 +6,29 @@ Created on Thu Nov 22 21:54:10 2018
 """
 import DOC_2_PDF
 from DOC_2_PDF import total_word_file
-import shutil
+import shutil #对文件及文件夹的高级操作库，可与os库互补，完成文件夹整体的复制、移动、重命名等操作
 import os, os.path
 import glob
 from pdf2image import convert_from_path
 import cv2
 import numpy as np 
 
-
 input_direc = r"C:\Axis AI Challenge @ Akash_Abhishek\INPUT FILES"
 total_input_files = len(os.listdir(input_direc))
-
 total_effective_files=total_input_files - total_word_file
+total_input_files = len(os.listdir(input_direc)) #除了word文档之外的文档数量
 
-total_input_files = len(os.listdir(input_direc))
-
-
-
-    
 #name_lists_new = set(name_lists)    
-            
 
 direc_1= r"C:\Axis AI Challenge @ Akash_Abhishek\PROCESSED FILES 1"
 if os.path.exists(direc_1):
     shutil.rmtree(direc_1)
 
-os.makedirs(direc_1)
+os.makedirs(direc_1) #如果路径存在，则删除并新建
 
 for i in range(0, total_effective_files):
    pocessing_files_1_direc = r"C:\Axis AI Challenge @ Akash_Abhishek\PROCESSED FILES 1\{}".format(i+1)        
-   os.makedirs(pocessing_files_1_direc) 
-
-    
-   
+   os.makedirs(pocessing_files_1_direc) #对每一个文档，创建一个以i+1命名的新的文件夹
    
 direc_2 = r"C:\Axis AI Challenge @ Akash_Abhishek\PROCESSED FILES 2"
 if os.path.exists(direc_2):
@@ -62,9 +52,6 @@ os.makedirs(direc_3)
 #   outpu_files_direc = r"C:\Axis AI Challenge @ Akash_Abhishek\OUTPUT FILES\{}".format(i+1)        
 #   os.makedirs(outpu_files_direc) 
 
-
-
-
 file_name= []
 
 results_pdf = [each for each in os.listdir(r"C:\Axis AI Challenge @ Akash_Abhishek\INPUT FILES") if each.endswith('.pdf')]
@@ -74,14 +61,12 @@ results_jpeg = [each for each in os.listdir(r"C:\Axis AI Challenge @ Akash_Abhis
 results_tiff = [each for each in os.listdir(r"C:\Axis AI Challenge @ Akash_Abhishek\INPUT FILES") if each.endswith('.tiff')]
 results_tif = [each for each in os.listdir(r"C:\Axis AI Challenge @ Akash_Abhishek\INPUT FILES") if each.endswith('.tif')]
 
-
-
-
-
-
 pdf = [convert_from_path(in_file, 500) for in_file in glob.glob(r"C:\Axis AI Challenge @ Akash_Abhishek\INPUT FILES\*.pdf")]
-total_no_pdf = len(pdf)        
+#将pdf转为图片，所以这个pdf变量里面存储的是图片
 
+total_no_pdf = len(pdf)
+
+#每一个pdf有多页，转为多页图片，所以外层针对每一个pdf，内层针对每一个pdf的每一页
 for i in range(0, len(pdf)):
     pages = pdf[i]
     name = results_pdf[i]
@@ -90,9 +75,7 @@ for i in range(0, len(pdf)):
     
     for j in range(0, len(pages)):
         page = pages[j]   
-        page.save(r"C:\Axis AI Challenge @ Akash_Abhishek\PROCESSED FILES 1\{}\PDF_{} page_{}.jpg" .format(i+1,i+1,j+1))
-
-
+        page.save(r"C:\Axis AI Challenge @ Akash_Abhishek\PROCESSED FILES 1\{}\PDF_{} page_{}.jpg" .format(i+1, i+1, j+1))
 
 #input_files_name=os.listdir(input_direc)
 #
@@ -102,32 +85,32 @@ for i in range(0, len(pdf)):
 #    name_lists.append(name_list)
 
         
-jpgs = [cv2.imread(file) for file in glob.glob(r"C:\Axis AI Challenge @ Akash_Abhishek\INPUT FILES\*.jpg") ]        
+jpgs = [cv2.imread(file) for file in glob.glob(r"C:\Axis AI Challenge @ Akash_Abhishek\INPUT FILES\*.jpg")]
 total_no_jpgs = len(jpgs)        
 
 for i in range(0, len(jpgs)):
     jpg_page=jpgs[i] 
-    cv2.imwrite(r"C:\Axis AI Challenge @ Akash_Abhishek\PROCESSED FILES 1\{}\jpg_{}.jpg" .format(i+1+total_no_pdf,i+1)   , jpg_page)
+    cv2.imwrite(r"C:\Axis AI Challenge @ Akash_Abhishek\PROCESSED FILES 1\{}\jpg_{}.jpg".format(i+1+total_no_pdf,i+1), jpg_page)
     name = results_jpg[i]
     name_list = os.path.splitext(name)[0]
     file_name.append(name_list)
 
-pngs = [cv2.imread(file) for file in glob.glob(r"C:\Axis AI Challenge @ Akash_Abhishek\INPUT FILES\*.png") ]        
+pngs = [cv2.imread(file) for file in glob.glob(r"C:\Axis AI Challenge @ Akash_Abhishek\INPUT FILES\*.png")]
 total_no_pngs = len(pngs)        
 
 for i in range(0, len(pngs)):
     png_page=pngs[i] 
-    cv2.imwrite(r"C:\Axis AI Challenge @ Akash_Abhishek\PROCESSED FILES 1\{}\png_{}.jpg" .format(i+1+total_no_pdf+total_no_jpgs,i+1)   , png_page)
+    cv2.imwrite(r"C:\Axis AI Challenge @ Akash_Abhishek\PROCESSED FILES 1\{}\png_{}.jpg" .format(i+1+total_no_pdf+total_no_jpgs,i+1), png_page)
     name = results_png[i]
     name_list = os.path.splitext(name)[0]
     file_name.append(name_list)
 
-jpegs = [cv2.imread(file) for file in glob.glob(r"C:\Axis AI Challenge @ Akash_Abhishek\INPUT FILES\*.jpeg") ]        
+jpegs = [cv2.imread(file) for file in glob.glob(r"C:\Axis AI Challenge @ Akash_Abhishek\INPUT FILES\*.jpeg")]
 total_no_jpegs = len(jpegs)        
 
 for i in range(0, len(jpegs)):
     jpeg_page=jpegs[i] 
-    cv2.imwrite(r"C:\Axis AI Challenge @ Akash_Abhishek\PROCESSED FILES 1\{}\jpeg_{}.jpg" .format(i+1+total_no_pdf+total_no_jpgs+total_no_pngs,i+1))
+    cv2.imwrite(r"C:\Axis AI Challenge @ Akash_Abhishek\PROCESSED FILES 1\{}\jpeg_{}.jpg" .format(i+1+total_no_pdf+total_no_jpgs+total_no_pngs, i+1))
     name = results_jpeg[i]
     name_list = os.path.splitext(name)[0]
     file_name.append(name_list)
@@ -155,10 +138,6 @@ for i in range(0, len(tifs)):
     name_list = os.path.splitext(name)[0]
     file_name.append(name_list)
     #tiff_page.save("C:\Axis AI Challenge @ Akash_Abhishek\PROCESSED FILES 1\{}\tiff_{}.jpg" .format(i+1+total_no_pdf+total_no_jpgs, i+1))
-
-
-
-
 
 print(file_name)
 
